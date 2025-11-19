@@ -1,0 +1,5 @@
+{
+  "name": "Vinyl Viz Player",
+  "description": "A modern, dark-themed vinyl music player with audio visualization, designed for content creators to screen record their music.",
+  "requestFramePermissions": []
+}
