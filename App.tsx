@@ -74,6 +74,8 @@ const App: React.FC = () => {
     randomizeTheme();
   }, []);
 
+  
+
   const randomizeTheme = () => {
     const random = THEMES[Math.floor(Math.random() * THEMES.length)];
     setCurrentTheme(random);
@@ -138,6 +140,22 @@ const App: React.FC = () => {
     setIsPlaying(false);
     setCurrentTime(0);
   };
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.code === 'Space' || e.key === ' ') {
+        e.preventDefault();
+        handlePlayPause();
+      } else if (e.key === 'Escape') {
+        if (hideUI) {
+          e.preventDefault();
+          setHideUI(false);
+        }
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [handlePlayPause, hideUI]);
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const time = parseFloat(e.target.value);
